@@ -1,33 +1,42 @@
 package CinemaTicket;
+
+import java.text.DecimalFormat;
+
 public class CinemaTicket {
     private static int nextId = 1;
-    private final int id;
-    private final String movie;
-    private final String showTime;
-    private final String seat;
-    private final double price;
-    private final String customer;
 
-    public CinemaTicket(String movie, String showTime, String seat, double price, String customer) {
+    private int id;
+    private String movieName;
+    private String showTime;
+    private String seat;
+    private double price;
+    private String customerName;
+
+    public CinemaTicket(String movieName, String showTime, String seat,
+                        double price, String customerName) {
         this.id = nextId++;
-        this.movie = movie;
+        this.movieName = movieName;
         this.showTime = showTime;
         this.seat = seat;
         this.price = price;
-        this.customer = customer;
+        this.customerName = customerName;
     }
 
     public int getId() { return id; }
-    public String getMovie() { return movie; }
+    public String getMovieName() { return movieName; }
     public String getShowTime() { return showTime; }
     public String getSeat() { return seat; }
     public double getPrice() { return price; }
-    public String getCustomer() { return customer; }
+    public String getCustomerName() { return customerName; }
 
     @Override
     public String toString() {
-        return "ID: " + id + " | Phim: " + movie + " | Suat: " + showTime +
-               " | Ghe: " + seat + " | Gia: " + price + " | Khach: " + customer;
+        DecimalFormat df = new DecimalFormat("#,##0.00");
+        return "ID: " + id
+                + " | Phim: " + movieName
+                + " | Suat: " + showTime
+                + " | Ghe: " + seat
+                + " | Gia: " + df.format(price)
+                + " | Khach: " + customerName;
     }
 }
-
